@@ -33,28 +33,52 @@ module ALU32Bit(ALUControl, A, B, ALUResult, Zero);
 	input [31:0] A, B;	    // inputs
 
 	output reg[31:0] ALUResult;	// answer
-	output Zero;	    // Zero=1 if ALUResult == 0
+	output reg Zero;	    // Zero=1 if ALUResult == 0
 
     /* Please fill in the implementation here... */
-    always @(*) begin
+    always @(*) begin //do everything except data & jump
         case(ALUControl)
-        4'b0000: begin //add
-            ALUResult <= A + B; end
-        4'b0001: begin //sub
-            ALUResult <= A - B; end
+        4'b0000: begin //add & addi
+            ALUResult = A + B; end
+        4'b0001: begin //sub, beq
+            ALUResult = A - B; end
         4'b0010: begin //mul
-            ALUResult <= A * B; end
-        4'b0011: begin  //and
-            ALUResult <= A & B; end
-        4'b0100: begin //or
-            ALUResult <= A | B; end
+            ALUResult = A * B; end
+        4'b0011: begin  //and, andi
+            ALUResult = A & B; end
+        4'b0100: begin //or, ori
+            ALUResult = A | B; end
         4'b0101: begin //nor
-            ALUResult <= ~(A | B); end
+            ALUResult = ~(A | B); end
+        4'b0110: begin //xor
+            ALUResult = A ^ B; end
+        4'b0111: begin //slt, slti
+            ALUResult = (A < B); end
+        4'b1000: begin //bgez
+            ALUResult = A < 0; end
+        4'b1001: begin  //bne
+            ALUResult = (A == B); end
+        4'b1010: begin //blez
+            ALUResult = A > 0; end
+        4'b1011: begin //bltz
+            ALUResult = A >= 0; end
+        
         default: begin
-            ALUResult <= 32'bX; end
+            ALUResult = 32'bX; end
         
         endcase
+        
+        if (ALUResult == 0) begin
+            Zero = 1; end
+        else begin
+            Zero = 0;
+        end
+        
     end 
+    
+  
+        
+    
        
         
     

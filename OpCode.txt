@@ -1,10 +1,12 @@
 0000 - Add
-0001 - Sub
+0001 - Sub, beq
 0010 - mul
-0011 - and
-0100 - Or
+0011 - and, andi
+0100 - Or, ori
 0101 - Nor
 0110 - Xor
-0111 - Sll 
-1000 - Srl
-1001 - Slt
+0111 - slt, slti
+1000 - bgez
+1001 - bne
+1010 - blez
+1011 - bltz
