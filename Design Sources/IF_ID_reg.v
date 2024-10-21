@@ -27,14 +27,28 @@ module IF_ID_reg(Clk,Rst,PC_in,PC_out,Instr_in,Instr_out);
     output reg [31:0] PC_out;
     output reg [31:0] Instr_out;
     
+    reg [31:0] PC_reg;
+    reg [31:0] Instr_reg;
+    
     always @(posedge Clk)begin
         if (Rst) begin
             PC_out <= 32'b0;
             Instr_out <= 32'b0;
         end
         else begin
-            PC_out<=PC_in;
-            Instr_out<=Instr_in;
+            PC_reg<=PC_in;
+            Instr_reg<=Instr_in;
+        end
+     end
+     
+      always @(negedge Clk)begin
+        if (Rst) begin
+            PC_out <= 32'b0;
+            Instr_out <= 32'b0;
+        end
+        else begin
+            PC_out<=PC_reg;
+            Instr_out<=Instr_reg;
         end
         
      end
