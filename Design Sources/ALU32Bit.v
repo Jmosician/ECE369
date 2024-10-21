@@ -30,7 +30,7 @@ module ALU32Bit(ALUControl, A, B, ALUResult, Zero);
 
 	input [3:0] ALUControl; // control bits for ALU operation
                                 // you need to adjust the bitwidth as needed
-	input [31:0] A, B;	    // inputs
+	input signed [31:0] A, B;	    // inputs
 
 	output reg[31:0] ALUResult;	// answer
 	output reg Zero;	    // Zero=1 if ALUResult == 0
