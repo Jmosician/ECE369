@@ -32,24 +32,39 @@ MemToReg_in,MemToReg_out,AddResult_in,AddResult_out,Zero_in,Zero_out,ALUResult_i
     output reg [31:0] AddResult_out,ALUResult_out,ReadData2_out;
     output reg [4:0] MUXResult_out;
     
-    reg Branch_reg,MemWrite_reg,MemRead_reg,RegWrite_reg,MemToReg_reg,Zero_reg;
+   /* reg Branch_reg,MemWrite_reg,MemRead_reg,RegWrite_reg,MemToReg_reg,Zero_reg;
     reg [31:0] AddResult_reg,ALUResult_reg,ReadData2_reg;
-    reg [4:0] MUXResult_reg;
+    reg [4:0] MUXResult_reg;  */
     
     always @(posedge Clk) begin
-        Branch_reg<=Branch_in;
-        MemWrite_reg<=MemWrite_in;
-        MemRead_reg<=MemRead_in;
-        RegWrite_reg<=RegWrite_in;
-        MemToReg_reg<=MemToReg_in;
-        Zero_reg<=Zero_in;
-        AddResult_reg<=AddResult_in;
-        ALUResult_reg<=ALUResult_in;
-        ReadData2_reg<=ReadData2_in;
-        MUXResult_reg<=MUXResult_in;
+        if (Rst) begin
+            Branch_out<=0;
+            MemWrite_out<=0;
+            MemRead_out<=0;
+            RegWrite_out<=0;
+            MemToReg_out<=0;
+            Zero_out<=0;
+            AddResult_out<=32'b0;
+            ALUResult_out<=32'b0;
+            ReadData2_out<=32'b0;
+            MUXResult_out<=5'b0;
+        
+        end
+        else begin
+            Branch_out<=Branch_in;
+            MemWrite_out<=MemWrite_in;
+            MemRead_out<=MemRead_in;
+            RegWrite_out<=RegWrite_in;
+            MemToReg_out<=MemToReg_in;
+            Zero_out<=Zero_in;
+            AddResult_out<=AddResult_in;
+            ALUResult_out<=ALUResult_in;
+            ReadData2_out<=ReadData2_in;
+            MUXResult_out<=MUXResult_in;
+        end
     end
     
-    always @(negedge Clk) begin
+  /*  always @(negedge Clk) begin
         Branch_out<=Branch_reg;
         MemWrite_out<=MemWrite_reg;
         MemRead_out<=MemRead_reg;
@@ -60,6 +75,6 @@ MemToReg_in,MemToReg_out,AddResult_in,AddResult_out,Zero_in,Zero_out,ALUResult_i
         ALUResult_out<=ALUResult_reg;
         ReadData2_out<=ReadData2_reg;
         MUXResult_out<=MUXResult_reg;
-    end
+    end */
    
 endmodule
