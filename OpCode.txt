@@ -1,12 +1,34 @@
-0000 - Add
-0001 - Sub, beq
-0010 - mul
-0011 - and, andi
-0100 - Or, ori
-0101 - Nor
-0110 - Xor
-0111 - slt, slti
-1000 - bgez
-1001 - bne
-1010 - blez
-1011 - bltz
+Func / ALUOp
+100000 - Add, Addi
+100010 - Sub, beq
+111000 - mul //same as srl
+100100 - and, andi
+100101 - Or, ori
+100111 - Nor
+100110 - Xor
+101010 - slt, slti
+001000 - bgez
+001001 - bne
+001010 - blez
+001011 - bltz
+001111 - bgtz
+000010 - srl //dont follow ALU 
+000000 - sll 
+
+
+OpCode
+000000 - All R-Types
+000100 - beq
+011100 - Mul
+001100 - andi
+001101 - ori
+001010 - slti
+000001 - bgez
+000101 - bne
+000110 - blez
+000001 - bltz
+000111 - bgtz
+001110 - xori
+
+List of R-Types
+Add, sub, mul, and, or, nor, xor, slt, srl,6'00
