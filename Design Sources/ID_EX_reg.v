@@ -30,14 +30,16 @@ Instr15_11_in,Instr15_11_out, Instr26bit_in, Instr26bit_out, ra_in, ra_out, jr_i
     input[5:0] ALUOp_in;
     input[4:0] Instr20_16_in, Instr15_11_in;
     input [25:0] Instr26bit_in;
-    input ra_in,jr_in,jump_target_in,load_in,store_in,jal_in;
+    input ra_in,jr_in,jump_target_in,jal_in;
+    input [1:0] load_in,store_in;
     
     output reg [31:0] PC_out, ReadData1_out, ReadData2_out, SignExt_out;
     output reg RegWrite_out, ALUsrc_out, RegDest_out, MemWrite_out, MemRead_out,MemToReg_out,Branch_out;
     output reg [5:0] ALUOp_out;
     output reg [4:0] Instr20_16_out, Instr15_11_out;
     output reg [25:0] Instr26bit_out;
-    output reg ra_out,jr_out,jump_target_out,load_out,store_out,jal_out;
+    output reg ra_out,jr_out,jump_target_out,jal_out;
+    output reg [1:0] load_out,store_out;
     
     /* reg [31:0] PC_reg, ReadData1_reg, ReadData2_reg, SignExt_reg;
     reg RegWrite_reg, ALUsrc_reg, RegDest_reg, MemWrite_reg, MemRead_reg,MemToReg_reg,Branch_reg;

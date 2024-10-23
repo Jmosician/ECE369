@@ -28,12 +28,14 @@ ra_in, ra_out,load_in,load_out,store_in,store_out,jal_in,jal_out);
     input Branch_in,MemWrite_in,MemRead_in,RegWrite_in,MemToReg_in,Zero_in;
     input[31:0] AddResult_in,ALUResult_in,ReadData2_in;
     input MUXResult_in;
-    input ra_in,load_in,store_in,jal_in;
+    input ra_in,jal_in;
+    input [1:0] load_in,store_in;
     
     output reg Branch_out,MemWrite_out,MemRead_out,RegWrite_out,MemToReg_out,Zero_out;
     output reg [31:0] AddResult_out,ALUResult_out,ReadData2_out;
     output reg [4:0] MUXResult_out;
-    output reg ra_out,load_out,store_out,jal_out;
+    output reg ra_out,jal_out;
+    output reg [1:0] load_out,store_out;
     
    /* reg Branch_reg,MemWrite_reg,MemRead_reg,RegWrite_reg,MemToReg_reg,Zero_reg;
     reg [31:0] AddResult_reg,ALUResult_reg,ReadData2_reg;
