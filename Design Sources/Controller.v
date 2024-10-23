@@ -21,11 +21,11 @@
 
 
 module Controller(
-    Instruction, PCSrc, RegWrite, jump_target, ALUSrc, ALUOp, RegDst, Branch, MemWrite, MemRead, MemToReg, jr, ra, store, load, jal
+    Instruction,RegWrite, jump_target, ALUSrc, ALUOp, RegDst, Branch, MemWrite, MemRead, MemToReg, jr, ra, store, load, jal
     );
     
     input [31:0] Instruction;
-    output reg PCSrc, RegWrite, jump_target, ALUSrc, RegDst, Branch, MemWrite, MemRead, MemToReg, jr, ra, jal;
+    output reg RegWrite, jump_target, ALUSrc, RegDst, Branch, MemWrite, MemRead, MemToReg, jr, ra, jal;
     output reg [5:0] ALUOp;
     output reg [1:0] load, store;
     
@@ -175,7 +175,6 @@ module Controller(
             
             6'b001110: begin    //xori
             ALUOp = 100110;
-            PCSrc = 1;
             RegWrite = 1;
             jump_target = 0;
             ALUSrc = 1;
