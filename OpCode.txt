@@ -14,10 +14,14 @@ Func / ALUOp
 001111 - bgtz
 000010 - srl //dont follow ALU 
 000000 - sll 
+110000 - j
+001000 - jr
 
 
 OpCode
-000000 - All R-Types
+000000 - All R-Types, jr
+000010 - j
+000011 - jal
 000100 - beq
 011100 - Mul
 001100 - andi
@@ -29,6 +33,12 @@ OpCode
 000001 - bltz
 000111 - bgtz
 001110 - xori
+100011 - lw
+100001 - lh
+100000 - lb
+101011 - sw
+101001 - sh
+101000 - sb  
 
 List of R-Types
-Add, sub, mul, and, or, nor, xor, slt, srl,6'00
+Add, sub, mul, and, or, nor, xor, slt, srl 
