@@ -21,16 +21,19 @@
 
 
 module EX_MEM_reg(Clk,Rst,Branch_in,Branch_out,MemWrite_in,MemWrite_out,MemRead_in,MemRead_out,RegWrite_in,RegWrite_out,
-MemToReg_in,MemToReg_out,AddResult_in,AddResult_out,Zero_in,Zero_out,ALUResult_in,ALUResult_out,MUXResult_in,MUXResult_out,ReadData2_in,ReadData2_out);
+MemToReg_in,MemToReg_out,AddResult_in,AddResult_out,Zero_in,Zero_out,ALUResult_in,ALUResult_out,MUXResult_in,MUXResult_out,ReadData2_in,ReadData2_out,
+ra_in, ra_out,load_in,load_out,store_in,store_out,jal_in,jal_out);
 
     input Clk,Rst;
     input Branch_in,MemWrite_in,MemRead_in,RegWrite_in,MemToReg_in,Zero_in;
     input[31:0] AddResult_in,ALUResult_in,ReadData2_in;
     input MUXResult_in;
+    input ra_in,load_in,store_in,jal_in;
     
     output reg Branch_out,MemWrite_out,MemRead_out,RegWrite_out,MemToReg_out,Zero_out;
     output reg [31:0] AddResult_out,ALUResult_out,ReadData2_out;
     output reg [4:0] MUXResult_out;
+    output reg ra_out,load_out,store_out,jal_out;
     
    /* reg Branch_reg,MemWrite_reg,MemRead_reg,RegWrite_reg,MemToReg_reg,Zero_reg;
     reg [31:0] AddResult_reg,ALUResult_reg,ReadData2_reg;
@@ -48,7 +51,10 @@ MemToReg_in,MemToReg_out,AddResult_in,AddResult_out,Zero_in,Zero_out,ALUResult_i
             ALUResult_out<=32'b0;
             ReadData2_out<=32'b0;
             MUXResult_out<=5'b0;
-        
+            ra_out<=0;
+            load_out<=0;
+            store_out<=0;
+            jal_out<=0;
         end
         else begin
             Branch_out<=Branch_in;
@@ -61,6 +67,10 @@ MemToReg_in,MemToReg_out,AddResult_in,AddResult_out,Zero_in,Zero_out,ALUResult_i
             ALUResult_out<=ALUResult_in;
             ReadData2_out<=ReadData2_in;
             MUXResult_out<=MUXResult_in;
+            ra_out<=ra_in;
+            load_out<=load_in;
+            store_out<=store_in;
+            jal_out<=jal_in;
         end
     end
     

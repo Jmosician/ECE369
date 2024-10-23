@@ -21,15 +21,17 @@
 
 
 module MEM_WB_reg(Clk,Rst,RegWrite_in,RegWrite_out,MemToReg_in,MemToReg_out,MemData_in,MemData_out,
-ALUResult_in,ALUResult_out,MUXResult_in,MUXResult_out);
+ALUResult_in,ALUResult_out,MUXResult_in,MUXResult_out,ra_in, ra_out);
     input Clk,Rst;
     input RegWrite_in,MemToReg_in;
     input [31:0] MemData_in, ALUResult_in;
     input [4:0] MUXResult_in;
+    input ra_in;
     
     output reg RegWrite_out, MemToReg_out;
     output reg [31:0] MemData_out, ALUResult_out;
     output reg [4:0] MUXResult_out;
+    output reg ra_out;
     
     always @(posedge Clk) begin
         if (Rst) begin
@@ -38,6 +40,7 @@ ALUResult_in,ALUResult_out,MUXResult_in,MUXResult_out);
             MemData_out<=32'b0;
             ALUResult_out<=32'b0;
             MUXResult_out<=5'b0;
+            ra_out<=0;
         end
         else begin
             RegWrite_out<=RegWrite_in;
@@ -45,6 +48,7 @@ ALUResult_in,ALUResult_out,MUXResult_in,MUXResult_out);
             MemData_out<=MemData_in;
             ALUResult_out<=ALUResult_in;
             MUXResult_out<=MUXResult_in;
+            ra_out<=ra_in;
         end
         
     end
