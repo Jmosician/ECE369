@@ -1,7 +1,7 @@
-addi $t0, $zero, $zero #t0=0, display 0,0
-nop
-nop
-nop
-nop
-nop
-addi $t1, $zero, 6 #t1=6,display 24,6
+20080000 
+00000000 
+00000000 
+00000000 
+00000000 
+00000000 
+20090006 
