@@ -42,19 +42,18 @@ module InstructionMemory(Address, Instruction);
 
     output reg [31:0] Instruction;    // Instruction at memory location Address
     
-    reg [31:0] memory[127:0]; 
+    reg [31:0] memory[0:1023]; 
     /* Please fill in the implementation here */
     integer i;
     
     //write to instructions
     //initialize each address
     initial begin
-    for (i=0; i<128; i = i+1)
-    memory[i] = i*3;
+    $readmemh("instruction_memory.mem", memory);
     end 
     
     always @* begin
-    Instruction = memory[Address[8:2]]; 
+    Instruction = memory[Address[11:2]]; 
     end
     
 endmodule
