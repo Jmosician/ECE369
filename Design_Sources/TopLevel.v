@@ -156,7 +156,7 @@ module TopLevel(Clk, Rst, PCValue,WriteData);
     
     MEM_WB_reg d(
         .Clk(Clk),.Rst(Rst),.RegWrite_in(RegWrite_MEM),.RegWrite_out(RegWrite_WB),
-        .MemToReg_in(MemToReg_MEM),.MemToReg_out(MemToReg_WB),.MemData_in(MemData),.MemData_out(MemData_WB),
+        .MemToReg_in(MemToReg_MEM),.MemToReg_out(MemToReg_WB),.MemData_in(MemData_MEM),.MemData_out(MemData_WB),
         .MUXResult_in(jalMuxResult),.MUXResult_out(jalMuxResult_WB),.RegDestResult_in(RegDestMuxResult_MEM),
         .RegDestResult_out(RegDestMuxResult_WB),.ra_in(Ra_MEM), .ra_out(Ra_WB)
         );
@@ -164,8 +164,7 @@ module TopLevel(Clk, Rst, PCValue,WriteData);
 //WB Stage
     //wire [31:0] MemToRegMuxResult;
 
-
-    Mux32Bit2To1 MemToRegMux(.out(WriteData), .inA(MemData_MEM), 
+    Mux32Bit2To1 MemToRegMux(.out(WriteData), .inA(MemData_WB), 
     .inB(jalMuxResult_WB), .sel(MemToReg_WB)
     );
 

@@ -1,7 +1,6 @@
 .text
-.globl main
+    main:
 
-Addi $t0, $t0, 5
-nop
+    add $t0, $t0, $t2
+    nop
 
-.end

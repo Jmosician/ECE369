@@ -32,7 +32,7 @@ module TopLevel_tb();
         #10 Rst = 0; 
 
         // More tests here
-        #200; // Run simulation
+        #500; // Run simulation
 
         
         $finish;
