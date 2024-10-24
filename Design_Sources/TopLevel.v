@@ -37,7 +37,7 @@ module TopLevel(Clk, Rst, PCValue,WriteData);
 
     
 
-    SignExtension(.in(InstructionID[15:0]), .out(SignExtend));
+    SignExtension signext(.in(InstructionID[15:0]), .out(SignExtend));
 
 
     Controller controller(.Instruction(Instruction), .RegWrite(RegWrite), .jump_target(Jump_Target), 
