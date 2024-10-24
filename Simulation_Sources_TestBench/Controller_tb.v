@@ -46,9 +46,14 @@ module Controller_tb();
     );
     
     initial begin
+        #100
         Instruction=32'b00000000000000000000000000100000;
-        #10
+        #100
         Instruction=536870944;
+        #100
+        Instruction=32'b00000000000000000000000000100010;
+        #100
+        Instruction=32'b00000000000000000000000000100100;
     end
 
 

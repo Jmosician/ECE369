@@ -10,8 +10,8 @@ module Controller(
     output reg [1:0] load, store;
     
     always @(Instruction) begin 
-      if(Instruction == 32'b0) begin
-          ALUOp = 6'b100000;
+      if(Instruction == 32'b00000000000000000000000000000000) begin
+          ALUOp = 6'b000000;
           Branch = 0;
           RegWrite = 0;
           jump_target = 0;
@@ -474,4 +474,3 @@ module Controller(
      end
    end
 endmodule
-
