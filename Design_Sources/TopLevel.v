@@ -1,12 +1,12 @@
 `timescale 1ns / 1ps
-module TopLevel(Clk, Rst, PCValue,WriteData,PCAddress, PCResult, Jr_Or_Not, Branch_output);
+module TopLevel(Clk, Rst, PCValue, WriteData);
     input Clk,Rst;
     output wire [31:0] PCValue;
     output wire [31:0] WriteData;
-    output wire [31:0] Branch_output;
+    wire [31:0] Branch_output;
     wire [31:0] Instruction;
-    output wire [31:0] Jr_Or_Not;
-    output wire [31:0] PCResult;
+    wire [31:0] Jr_Or_Not;
+    wire [31:0] PCResult;
     wire [31:0] InstructionID;
     wire [31:0] PCResultID;
     wire [31:0] ReadData1;
@@ -17,7 +17,7 @@ module TopLevel(Clk, Rst, PCValue,WriteData,PCAddress, PCResult, Jr_Or_Not, Bran
     wire [5:0] ALUOp;
     wire Branch, RegWrite, Jump_Target, ALUSrc, RegDst, MemWrite, MemRead, MemToReg, Jr, Ra, Jal;
     wire [1:0] Store, Load;
-    output wire [31:0] PCAddress;
+    wire [31:0] PCAddress;
 
 //IF Stage
     ProgramCounter Pcount(.Address(PCAddress), .PCResult(PCValue), .Reset(Rst), .Clk(Clk));
