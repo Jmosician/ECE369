@@ -14,13 +14,13 @@ module Mux32Bit3To1(out, inA, inB, inC, sel);
     input [31:0] inA;
     input [31:0] inB;
     input [31:0] inC;
-    input sel [1:0];
+    input [1:0] sel;
 
     /* Fill in the implementation here ... */ 
     always @(sel, inA, inB, inC) begin
     if (sel == 0) begin
     out <= inA; end
-    else if (sel==1) begin
+    else if (sel == 1) begin
     out <= inB; end
     else if (sel == 2) begin
     out <= inC; end
