@@ -2,12 +2,12 @@
 ~addi~
 ~sub~
 ~mul~
-~lw
-~sw
-~sb
-~lh
-~lb
-~sh 
+~lw~
+~sw~
+~sb~
+~lh~
+~lb~
+~sh~
 ~bgez~ 
 ~beq~ 
 ~bne~
@@ -27,4 +27,4 @@
 ~sll~
 ~srl~ 
 ~slt~ 
-~slti~ 
+~slti

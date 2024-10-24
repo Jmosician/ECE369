@@ -39,6 +39,7 @@ OpCode
 101011 - sw
 101001 - sh
 101000 - sb  
+001000 - addi
 
 List of R-Types
 Add, sub, mul, and, or, nor, xor, slt, srl 
