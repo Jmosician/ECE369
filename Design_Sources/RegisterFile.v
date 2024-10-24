@@ -62,7 +62,7 @@ module RegisterFile(ReadRegister1, ReadRegister2, WriteRegister, WriteData, RegW
     integer i;
     initial begin
         for (i = 0; i < 32; i = i + 1)
-            Registers[i] = 0;  // Initialize all registers to 0
+            Registers[i] = i;  // Initialize all registers to 0
     end
     
     always @(posedge Clk) begin
