@@ -1,24 +1,4 @@
 `timescale 1ns / 1ps
-//////////////////////////////////////////////////////////////////////////////////
-// Company: 
-// Engineer: 
-// 
-// Create Date: 10/22/2024 11:17:59 AM
-// Design Name: 
-// Module Name: Controller
-// Project Name: 
-// Target Devices: 
-// Tool Versions: 
-// Description: 
-// 
-// Dependencies: 
-// 
-// Revision:
-// Revision 0.01 - File Created
-// Additional Comments:
-// 
-//////////////////////////////////////////////////////////////////////////////////
-
 
 module Controller(
     Instruction,RegWrite, jump_target, ALUSrc, ALUOp, RegDst, Branch, MemWrite, MemRead, MemToReg, jr, ra, store, load, jal
@@ -29,7 +9,25 @@ module Controller(
     output reg [5:0] ALUOp;
     output reg [1:0] load, store;
     
-    always @(Instruction[31:26]) begin
+    always @(Instruction) begin 
+      if(Instruction == 32'b0) begin
+          ALUOp = 6'b100000;
+          Branch = 0;
+          RegWrite = 0;
+          jump_target = 0;
+          RegDst = 0;
+          MemWrite = 0;
+          MemRead = 0;
+          MemToReg = 0; 
+          ALUSrc = 0;
+          jr = 0; 
+          ra = 0;
+          store = 0;
+          load = 0;
+          jal = 0;
+          end
+          
+        else begin
         case(Instruction[31:26]) 
             6'b000000: begin 
             //R-Type        
@@ -99,6 +97,23 @@ module Controller(
             store = 0;
             load = 0;
             jal = 0;
+            end
+            
+            default: begin
+            ALUOp = 6'bX;
+            Branch = 1'bX;
+            RegWrite = 1'bX;
+            jump_target = 1'bX;
+            ALUSrc = 1'bX;
+            RegDst = 1'bX;
+            MemWrite = 1'bX;
+            MemRead = 1'bX;
+            MemToReg = 1'bX; 
+            jr = 1'bX; 
+            ra = 1'bX;
+            store = 2'bX;
+            load = 2'bX;
+            jal = 1'bX;
             end
             
             endcase
@@ -436,9 +451,27 @@ module Controller(
             load = 0;
             jal = 0;
             end 
+            
+            default: begin
+            ALUOp = 6'bX;
+            Branch = 1'bX;
+            RegWrite = 1'bX;
+            jump_target = 1'bX;
+            ALUSrc = 1'bX;
+            RegDst = 1'bX;
+            MemWrite = 1'bX;
+            MemRead = 1'bX;
+            MemToReg = 1'bX; 
+            jr = 1'bX; 
+            ra = 1'bX;
+            store = 2'bX;
+            load = 2'bX;
+            jal = 1'bX;
+            end 
         
            
      endcase
+     end
    end
 endmodule
 

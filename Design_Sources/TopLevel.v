@@ -22,7 +22,9 @@ module TopLevel(Clk, Rst, PCValue,WriteData);
     InstructionMemory InstructMem(.Address(PCValue), .Instruction(Instruction)); 
     PCAdder PCAdd(.PCResult(PCValue), .PCAddResult(PCResult));
     
-    IF_ID_reg a(.Clk(Clk),.Rst(Rst),.PC_in(PCResult),.PC_out(PCResultID),.Instr_in(Instruction),.Instr_out(InstructionID)
+    IF_ID_reg a(
+        .Clk(Clk),.Rst(Rst),.PC_in(PCResult),
+        .PC_out(PCResultID),.Instr_in(Instruction),.Instr_out(InstructionID)
     );
 
 //ID Stage

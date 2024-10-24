@@ -23,12 +23,11 @@ module TopLevel_tb();
     );
 	initial begin
 		Clk <= 1;
-        Rst <= 0;
+        #10 Rst <= 1;
 		forever #10 Clk <= ~Clk;
 	end
 	
 	initial begin
-        Rst = 1; // Reset
         #10 Rst = 0; 
 
         // More tests here
