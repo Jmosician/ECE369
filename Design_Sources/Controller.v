@@ -105,6 +105,24 @@ module Controller(
             end
             
             //Immediate
+            
+            6'b001000: begin  //addi
+            ALUOp = 6'b100000;
+            Branch = 0;
+            RegWrite = 1;
+            jump_target = 0;
+            RegDst = 1;
+            MemWrite = 0;
+            MemRead = 0;
+            MemToReg = 1; 
+            ALUSrc = 0;
+            jr = 0; 
+            ra = 0;
+            store = 0;
+            load = 0;
+            jal = 0;
+            end
+            
             6'b011100: begin  //mul
             ALUOp = 6'b111000;
             Branch = 0;
@@ -296,22 +314,6 @@ module Controller(
             jal = 0;
             end 
             
-            6'b000010: begin //j
-            ALUOp = 6'b110000;
-            Branch = 1;
-            RegWrite = 0;
-            jump_target = 1;
-            ALUSrc = 1;
-            RegDst = 1;
-            MemWrite = 0;
-            MemRead = 0;
-            MemToReg = 0; 
-            jr = 0; 
-            ra = 0;
-            store = 0;
-            load = 0;
-            jal = 0;
-            end 
             
             6'b000011: begin //jal
             ALUOp = 6'b110000;

@@ -26,6 +26,21 @@ module TopLevel_tb();
         Rst <= 0;
 		forever #10 Clk <= ~Clk;
 	end
+	
+	initial begin
+        Rst = 1; // Reset
+        #10 Rst = 0; 
+
+        // More tests here
+        #200; // Run simulation
+
+        
+        $finish;
+    end
+    
+	always @(posedge Clk) begin
+        $display("Time = %0t, PCValue = %d, WriteData = %d", $time, PCValue, WriteData);
+    end
 
     endmodule
     

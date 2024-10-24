@@ -18,8 +18,10 @@ module TopLevel(Clk, Rst, PCValue,WriteData);
     wire [31:0] PCAddress;
 
 //IF Stage
-    Mux32Bit2To1 PCSrcMux(.out(PCAddress), .inA(PCResult), .inB(Jr_Or_Not), .sel(Branch_output));
-    InstructionFetchUnit InstructionFetch(.Instruction(Instruction), .PCResult(PCResult), .Reset(Rst),.Clk(Clk));
+    ProgramCounter Pcount(.Address(PCAddress), .PCResult(PCValue), .Reset(Rst), .Clk(Clk));
+    InstructionMemory InstructMem(.Address(PCValue), .Instruction(Instruction)); 
+    PCAdder PCAdd(.PCResult(PCValue), .PCAddResult(PCResult));
+    
     IF_ID_reg a(.Clk(Clk),.Rst(Rst),.PC_in(PCResult),.PC_out(PCResultID),.Instr_in(Instruction),.Instr_out(InstructionID)
     );
 
@@ -160,14 +162,14 @@ module TopLevel(Clk, Rst, PCValue,WriteData);
         );
 
 //WB Stage
-    wire [31:0] MemToRegMuxResult;
+    //wire [31:0] MemToRegMuxResult;
 
 
-    Mux32Bit2To1 MemToRegMux(.out(MemToRegMuxResult), .inA(MemData_MEM), 
+    Mux32Bit2To1 MemToRegMux(.out(WriteData), .inA(MemData_MEM), 
     .inB(jalMuxResult_WB), .sel(MemToReg_WB)
     );
 
     Mux5Bit2To1 writeMux(.out(WB_reg), .inA(RegDestMuxResult_WB), .inB(31), .sel(Ra_WB));
-
+    Mux32Bit2To1 PCSrcMux(.out(PCAddress), .inA(PCResult), .inB(Jr_Or_Not), .sel(Branch_output));
 
 endmodule
