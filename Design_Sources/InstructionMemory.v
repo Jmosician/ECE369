@@ -44,12 +44,12 @@ module InstructionMemory(Address, Instruction);
     
     reg [31:0] memory[0:1023]; 
     /* Please fill in the implementation here */
-    integer i;
+    //integer i;
     
     //write to instructions
     //initialize each address
     initial begin
-    $readmemh("instruction_memory.mem", memory);
+    $readmemh("instruction_memory.mem", memory, 0, 1023);
     end 
     
     always @* begin
@@ -57,3 +57,4 @@ module InstructionMemory(Address, Instruction);
     end
     
 endmodule
+

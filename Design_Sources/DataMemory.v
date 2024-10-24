@@ -49,7 +49,7 @@ module DataMemory(Address, WriteData, Clk, MemWrite, MemRead, ReadData);
     reg [31:0] memory[0:1023];
     
     initial begin
-    $readmemh("instruction_memory.mem", memory);
+    $readmemh("instruction_memory.mem", memory, 0,1023);
     end 
     
     
@@ -69,3 +69,4 @@ module DataMemory(Address, WriteData, Clk, MemWrite, MemRead, ReadData);
     
     
 endmodule
+
