@@ -19,7 +19,7 @@ module TopLevel(Clk, Rst, PCValue,WriteData);
 
 //IF Stage
     Mux32Bit2To1 PCSrcMux(.out(PCAddress), .inA(PCResult), .inB(Jr_Or_Not), .sel(Branch_output));
-    InstructionFetchUnit InstructionMemory(.Instruction(Instruction), .PCResult(PCResult), .Reset(Rst),.Clk(Clk));
+    InstructionFetchUnit InstructionFetch(.Instruction(Instruction), .PCResult(PCResult), .Reset(Rst),.Clk(Clk));
     IF_ID_reg a(.Clk(Clk),.Rst(Rst),.PC_in(PCResult),.PC_out(PCResultID),.Instr_in(Instruction),.Instr_out(InstructionID)
     );
 
