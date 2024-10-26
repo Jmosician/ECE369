@@ -9,5 +9,5 @@
     nop
     sub $t5, $t9, $s4   #t5 = 5
 
-    Hi: 
-    addi $t1, $t2, 10   #t1 = 20, PC Address should be 8
+    Hi: addi $t1, $t2, 10   #t1 = 20, PC Address should be 8
+        addi $t7, $t2, 20
