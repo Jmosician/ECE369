@@ -43,3 +43,5 @@ OpCode
 
 List of R-Types
 Add, sub, mul, and, or, nor, xor, slt, srl 
+
+
