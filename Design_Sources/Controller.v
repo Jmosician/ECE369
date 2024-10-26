@@ -126,11 +126,11 @@ module Controller(
             Branch = 0;
             RegWrite = 1;
             jump_target = 0;
-            RegDst = 1;
+            RegDst = 0;
             MemWrite = 0;
             MemRead = 0;
             MemToReg = 1; 
-            ALUSrc = 0;
+            ALUSrc = 1;
             jr = 0; 
             ra = 0;
             store = 0;
@@ -143,7 +143,7 @@ module Controller(
             Branch = 0;
             RegWrite = 1;
             jump_target = 0;
-            RegDst = 1;
+            RegDst = 0;
             MemWrite = 0;
             MemRead = 0;
             MemToReg = 1; 
@@ -161,7 +161,7 @@ module Controller(
             RegWrite = 0;
             jump_target = 0;
             ALUSrc = 1;
-            RegDst = 1;
+            RegDst = 0;
             MemWrite = 0;
             MemRead = 0;
             MemToReg = 0; 
@@ -178,7 +178,7 @@ module Controller(
             RegWrite = 1;
             jump_target = 0;
             ALUSrc = 1;
-            RegDst = 1;
+            RegDst = 0;
             MemWrite = 0;
             MemRead = 0;
             MemToReg = 1; 
@@ -195,7 +195,7 @@ module Controller(
             RegWrite = 1;
             jump_target = 0;
             ALUSrc = 1;
-            RegDst = 1;
+            RegDst = 0;
             MemWrite = 0;
             MemRead = 0;
             MemToReg = 1; 
@@ -211,7 +211,7 @@ module Controller(
             RegWrite = 1;
             jump_target = 0;
             ALUSrc = 1;
-            RegDst = 1;
+            RegDst = 0;
             MemWrite = 0;
             MemRead = 0;
             MemToReg = 1; 
@@ -228,7 +228,7 @@ module Controller(
             RegWrite = 1;
             jump_target = 0;
             ALUSrc = 1;
-            RegDst = 1;
+            RegDst = 0;
             MemWrite = 0;
             MemRead = 0;
             MemToReg = 1; 
