@@ -7,7 +7,7 @@
     nop
     nop
     nop
-    add $t5, $t2, $s4   #t5 = 30
+    sub $t5, $t9, $s4   #t5 = 5
 
     Hi: 
     addi $t1, $t2, 10   #t1 = 20, PC Address should be 8

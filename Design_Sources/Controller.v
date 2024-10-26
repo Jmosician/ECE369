@@ -207,7 +207,7 @@ module Controller(
             end
             
             6'b001110: begin    //xori
-            ALUOp = 100110;
+            ALUOp = 6'b100110;
             RegWrite = 1;
             jump_target = 0;
             ALUSrc = 1;
@@ -255,9 +255,9 @@ module Controller(
             jal = 0;
             
             if(Instruction[20:16] == 0) begin
-            ALUOp = 001011;  end //bltz
+            ALUOp = 6'b001011;  end //bltz
             else if (Instruction[20:16] == 1) begin
-            ALUOp = 001000;  end //bgez
+            ALUOp = 6'b001000;  end //bgez
             end
             
             6'b000101: begin //bne
