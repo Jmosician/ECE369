@@ -143,7 +143,7 @@ module TopLevel(Clk, Rst, PCValue, WriteData);
     .inC({24'b0, ALUResult_MEM}), .sel(Load_MEM)
     );
     
-    Mux32Bit2To1 jrMux(.out(Jr_Or_Not), .inA(AddResult_MEM), .inB(ReadData1_EX), .sel(Jr_EX));
+    Mux32Bit2To1 jrMux(.out(Jr_Or_Not), .inA(AddResult_MEM), .inB(ReadData1_MEM), .sel(Jr_MEM));
     
     Mux32Bit3To1 storeMux(.out(storeMuxResult), .inA(ReadData2_MEM), 
     .inB({16'b0, ReadData2_MEM}), .inC({24'b0, ReadData2_MEM}), .sel(Store_MEM)
