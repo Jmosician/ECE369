@@ -27,7 +27,7 @@ ra_in, ra_out,load_in,load_out,store_in,store_out,jal_in,jal_out);
     input Clk,Rst;
     input Branch_in,MemWrite_in,MemRead_in,RegWrite_in,MemToReg_in,Zero_in;
     input[31:0] AddResult_in,ALUResult_in,ReadData1_in, ReadData2_in;
-    input MUXResult_in;
+    input [4:0] MUXResult_in;
     input ra_in,jal_in,jr_in;
     input [1:0] load_in,store_in;
     
