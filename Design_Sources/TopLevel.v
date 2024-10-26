@@ -1,6 +1,5 @@
 `timescale 1ns / 1ps
 module TopLevel(Clk, Rst, PCValue, WriteData);
-//hello
     input Clk,Rst;
     output wire [31:0] PCValue;
     output wire [31:0] WriteData;
@@ -47,7 +46,7 @@ module TopLevel(Clk, Rst, PCValue, WriteData);
     SignExtension signext(.in(InstructionID[15:0]), .out(SignExtend));
 
 
-    Controller controller(.Instruction(Instruction), .RegWrite(RegWrite), .jump_target(Jump_Target), 
+    Controller controller(.Instruction(InstructionID), .RegWrite(RegWrite), .jump_target(Jump_Target), 
     .ALUSrc(ALUSrc), .ALUOp(ALUOp), .RegDst(RegDst), .Branch(Branch), .MemWrite(MemWrite), .MemRead(MemRead), 
     .MemToReg(MemToReg), .jr(Jr), .ra(Ra), .store(Store), .load(Load), .jal(Jal)
     );
