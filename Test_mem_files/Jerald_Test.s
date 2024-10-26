@@ -1,5 +1,7 @@
 .text
     main:
 
-    add $t0, $t2, $t2
-    mul $t1, $t2, $t2
+    and $t2, $s3, $s4 #Result = 16
+    andi $t3, $s3, 20 #Result = 16
+
+    

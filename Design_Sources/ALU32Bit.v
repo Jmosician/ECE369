@@ -76,11 +76,7 @@ module ALU32Bit(ALUControl, A, B, ALUResult, Zero);
         
         endcase
         
-        if (ALUResult == 0) begin
-            Zero = 1; end
-        else begin
-            Zero = 0;
-        end
+         Zero = (ALUResult == 0) ? 1 : 0; // Compute Zero flag
         
     end 
     

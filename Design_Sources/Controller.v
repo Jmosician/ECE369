@@ -173,7 +173,7 @@ module Controller(
             end
             
             6'b001100: begin    //andi
-            ALUOp = 6'b100000;
+            ALUOp = 6'b100100;
             Branch = 0;
             RegWrite = 1;
             jump_target = 0;
