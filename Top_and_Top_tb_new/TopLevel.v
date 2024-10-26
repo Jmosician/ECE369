@@ -3,7 +3,7 @@ module TopLevel(
     input Clk, Rst,
     output wire [31:0] PCValue,
     output wire [31:0] WriteData,
-    output wire [31:0] Branch_output,
+    output wire Branch_output,
     output wire [31:0] Instruction,
     output wire [31:0] Jr_Or_Not,
     output wire [31:0] PCResult,

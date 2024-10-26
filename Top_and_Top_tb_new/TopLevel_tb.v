@@ -49,7 +49,7 @@ module TopLevel_tb();
 
     // MEM Stage outputs
     wire [31:0] Jr_Or_Not;
-    wire [31:0] Branch_output;
+    wire Branch_output;
     wire Branch_MEM;
     wire MemWrite_MEM;
     wire MemRead_MEM;
