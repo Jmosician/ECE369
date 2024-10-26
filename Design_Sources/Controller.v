@@ -408,8 +408,8 @@ module Controller(
             jump_target = 0;
             ALUSrc = 1;
             RegDst = 0;
-            MemWrite = 0;
-            MemRead = 1;
+            MemWrite = 1;
+            MemRead = 0;
             MemToReg = 0; 
             jr = 0; 
             ra = 0;
@@ -425,8 +425,8 @@ module Controller(
             jump_target = 0;
             ALUSrc = 1;
             RegDst = 0;
-            MemWrite = 0;
-            MemRead = 1;
+            MemWrite = 1;
+            MemRead = 0;
             MemToReg = 0; 
             jr = 0; 
             ra = 0;
@@ -442,8 +442,8 @@ module Controller(
             jump_target = 0;
             ALUSrc = 1;
             RegDst = 0;
-            MemWrite = 0;
-            MemRead = 1;
+            MemWrite = 1;
+            MemRead = 0;
             MemToReg = 0; 
             jr = 0; 
             ra = 0;
