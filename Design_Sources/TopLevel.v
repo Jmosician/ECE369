@@ -40,7 +40,7 @@ module TopLevel(
     // EX Stage wires
     wire [4:0] RegDestMuxResult;
     wire [31:0] jump_targetMuxResult;
-    wire [31:0] jump_targetMuxResult2
+    wire [31:0] jump_targetMuxResult2;
     wire [31:0] shiftResult;
     wire [31:0] ALUSrcMuxResult;
     wire ALUZero;
