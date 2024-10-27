@@ -102,7 +102,7 @@ module TopLevel(
         .ReadRegister2(InstructionID[20:16]), 
         .WriteRegister(WB_reg),
         .WriteData(WriteData), 
-        .RegWrite(RegWrite),
+        .RegWrite(RegWrite_WB),
         .Clk(Clk), 
         .ReadData1(ReadData1), 
         .ReadData2(ReadData2)
