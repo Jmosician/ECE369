@@ -175,7 +175,8 @@ module TopLevel_tb();
         .MemToReg_WB(MemToReg_WB),
         .jalMuxResult_WB(jalMuxResult_WB),
         .MemData_WB(MemData_WB),
-        .RegDestMuxResult_WB(RegDestMuxResult_WB)
+        .RegDestMuxResult_WB(RegDestMuxResult_WB),
+        .jump_targetMuxResult2(jump_targetMuxResult2)
     );
 
     // Clock generation
