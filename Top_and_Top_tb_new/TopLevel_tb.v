@@ -79,6 +79,7 @@ module TopLevel_tb();
     wire [31:0] jalMuxResult_WB;
     wire [31:0] MemData_WB;
     wire [4:0] RegDestMuxResult_WB;
+    wire [31:0] jump_targetMuxResult2;
 
     TopLevel u0(
         // Inputs
@@ -186,11 +187,12 @@ module TopLevel_tb();
     // Reset logic with a delay
     initial begin
         Rst <= 1;      // Assert reset
-        #40 Rst <= 0;  // Deassert reset after 40ns
+       
     end
 
     // Display results at every positive clock edge
     always @(posedge Clk) begin
+        Rst <= 0;
         $display("\n=== Time %0t ns ===", $time);
         
         // IF Stage

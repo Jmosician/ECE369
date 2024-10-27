@@ -7,7 +7,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 module TopLevel_tb(); 
     // Test inputs
-    reg Rst, Clk;
+    reg Clk, Rst;
 
     // outputs
     wire [31:0] PCValue;
@@ -34,11 +34,11 @@ module TopLevel_tb();
         Rst <= 1;      // Assert reset
           // Deassert reset after 40ns
     end
-    /*
+    
     // Display results at every positive clock edge
     always @(posedge Clk) begin
         Rst <= 0;
-        $display("\n=== Time %0t ns ===", $time);
+   /*     $display("\n=== Time %0t ns ===", $time);
         
         // IF Stage
         $display("\nIF Stage:");
@@ -70,7 +70,7 @@ module TopLevel_tb();
         $display("\nWB Stage:");
         $display("WriteData=%h, RegDestMuxResult_WB=%h, MemData_WB=%h",
                  WriteData, RegDestMuxResult_WB, MemData_WB);
-               
-    end   */
+           */    
+    end   
 
 endmodule

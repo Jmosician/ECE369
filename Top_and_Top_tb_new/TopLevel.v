@@ -66,7 +66,8 @@ module TopLevel(
     output wire MemToReg_WB,
     output wire [31:0] jalMuxResult_WB,
     output wire [31:0] MemData_WB,
-    output wire [4:0] RegDestMuxResult_WB
+    output wire [4:0] RegDestMuxResult_WB,
+    output wire [31:0] jump_targetMuxResult2
 );
 
 //IF Stage
@@ -185,7 +186,14 @@ module TopLevel(
         .inB(Instruction_15_11_EX),
         .sel(RegDst_EX)
     );
-
+    
+    Mux32Bit2To1 jump_targetMuxPC(
+        .out(jump_targetMuxResult2),
+        .inA(PCResult_EX),
+        .inB({PCResult_EX[31:28], 28'b0}),
+        .sel(Jump_Target_EX)
+    );
+    
     Mux32Bit2To1 jump_targetMux(
         .out(jump_targetMuxResult),
         .inA(SignExtend_EX),
@@ -214,7 +222,7 @@ module TopLevel(
     );
 
     Adder adder(
-        .A(PCResult_EX),
+        .A(jump_targetMuxResult2),
         .B(shiftResult),
         .AddResult(AddResult)
     );

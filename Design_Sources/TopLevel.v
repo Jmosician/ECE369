@@ -1,10 +1,12 @@
 `timescale 1ns / 1ps
-module TopLevel(Clk, Rst, PCValue, WriteData);
+module TopLevel(  
+    input Clk, Rst,
+    output wire [31:0] PCValue,
+    output wire [31:0] WriteData
+    );
 
 
-    input Clk, Rst;
-    output wire [31:0] PCValue;
-    output wire [31:0] WriteData;
+
 
     wire Branch_output;
     wire [31:0] Instruction;
@@ -38,6 +40,7 @@ module TopLevel(Clk, Rst, PCValue, WriteData);
     // EX Stage wires
     wire [4:0] RegDestMuxResult;
     wire [31:0] jump_targetMuxResult;
+    wire [31:0] jump_targetMuxResult2
     wire [31:0] shiftResult;
     wire [31:0] ALUSrcMuxResult;
     wire ALUZero;
@@ -192,6 +195,13 @@ module TopLevel(Clk, Rst, PCValue, WriteData);
         .out(jump_targetMuxResult),
         .inA(SignExtend_EX),
         .inB({6'b0, Instruction_25_0_EX}),
+        .sel(Jump_Target_EX)
+    );
+
+     Mux32Bit2To1 jump_targetMuxPC(
+        .out(jump_targetMuxResult2),
+        .inA(PCResult_EX),
+        .inB({PCResult_EX[31:28], 28'b0}),
         .sel(Jump_Target_EX)
     );
 
