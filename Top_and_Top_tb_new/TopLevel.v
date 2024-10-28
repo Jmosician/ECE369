@@ -39,6 +39,7 @@ module TopLevel(
     output wire [31:0] ALUSrcMuxResult,
     output wire ALUZero,
     output wire [31:0] AddResult,
+    output wire [31:0] jump_targetMuxResult2,
     // MEM Stage wires
     output wire Branch_MEM,
     output wire MemWrite_MEM,
@@ -66,8 +67,8 @@ module TopLevel(
     output wire MemToReg_WB,
     output wire [31:0] jalMuxResult_WB,
     output wire [31:0] MemData_WB,
-    output wire [4:0] RegDestMuxResult_WB,
-    output wire [31:0] jump_targetMuxResult2
+    output wire [4:0] RegDestMuxResult_WB
+    
 );
 
 //IF Stage
