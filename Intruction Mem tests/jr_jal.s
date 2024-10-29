@@ -8,11 +8,21 @@
     nop
     nop
     addi $t1, $zero, 5     # $t1 = 5
+    nop
+    nop
+    nop
+    nop
+    nop
 
 # Store the return address in $ra and jump to the subroutine
     jal subroutine
 
 # Main code after return from jr
+    nop
+    nop
+    nop
+    nop
+    nop
     add $t2, $t0, $t1      # $t2 = 20 (10 + 10) if jr worked correctly
     nop
     nop
