@@ -166,7 +166,7 @@ module Controller(
             Branch = 1;
             RegWrite = 0;
             jump_target = 0;
-            ALUSrc = 1;
+            ALUSrc = 0;
             RegDst = 0;
             MemWrite = 0;
             MemRead = 0;
@@ -277,7 +277,7 @@ module Controller(
             Branch = 1;
             RegWrite = 0;
             jump_target = 0;
-            ALUSrc = 1;
+            ALUSrc = 0;
             RegDst = 1;
             MemWrite = 0;
             MemRead = 0;
