@@ -1,3 +1,7 @@
+/* Group 28
+    Jerald Ocaya: 50%
+    Logan Goerge: 50%
+*/
 `timescale 1ns / 1ps
 module TopLevel(
     input Clk, Rst,

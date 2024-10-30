@@ -4,6 +4,10 @@
 // Laboratory 1
 // Module - TopLevel_tb.v
 // Description - Test the 'TopLevel.v' module with all pipeline stages
+/* Group 28
+    Jerald Ocaya: 50%
+    Logan Goerge: 50%
+*/
 ////////////////////////////////////////////////////////////////////////////////
 module TopLevel_tb(); 
     // Test inputs
@@ -183,7 +187,8 @@ module TopLevel_tb();
         .MemData_WB(MemData_WB), 
         .RegDestMuxResult_WB(RegDestMuxResult_WB) */
     );
-
+    
+ 
     // Clock generation
     initial begin
         Clk <= 1;
@@ -199,8 +204,12 @@ module TopLevel_tb();
     // Display results at every positive clock edge
     always @(posedge Clk) begin
         Rst <= 0;
-     /*   $display("\n=== Time %0t ns ===", $time);
-        
+       
+       
+            $display("\n=== Time %0t ns ===", $time);
+            $display("\n PCValue = %d WriteData = %d", PCValue, WriteData);
+   
+   /*     
         // IF Stage
         $display("\nIF Stage:");
         $display("PCValue=%h, PCResult=%h, Instruction=%h, PCAddress=%h",
