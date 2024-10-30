@@ -1,13 +1,13 @@
 `timescale 1ns / 1ps
 
 module Controller(
-    Instruction,RegWrite, jump_target, ALUSrc, ALUOp, RegDst, Branch, MemWrite, MemRead, MemToReg, jr, ra, store, load, jal
+    Instruction,RegWrite, jump_target, ALUSrc, ALUOp, RegDst, Branch, MemWrite, MemRead, MemToReg, jr, ra, store, load, jal, shift_mux
     );
     
     input [31:0] Instruction;
-    output reg RegWrite, jump_target, ALUSrc, RegDst, Branch, MemWrite, MemRead, MemToReg, jr, ra, jal;
+    output reg RegWrite, jump_target, RegDst, Branch, MemWrite, MemRead, MemToReg, jr, ra, jal, shift_mux;
     output reg [5:0] ALUOp;
-    output reg [1:0] load, store;
+    output reg [1:0] load, store, ALUSrc;
     
     always @(Instruction) begin 
       if(Instruction == 32'b00000000000000000000000000000000) begin
@@ -25,6 +25,7 @@ module Controller(
           store = 0;
           load = 0;
           jal = 0;
+          shift_mux = 0;
           end
           
         else begin
@@ -76,11 +77,13 @@ module Controller(
             
             6'b000000: begin    //sll
             ALUOp = 6'b000000;
-            ALUSrc = 1; end
+            shift_mux = 1;
+            ALUSrc = 2; end
             
             6'b000010: begin    //srl
             ALUOp = 6'b000010;
-            ALUSrc = 1; end
+            shift_mux = 1;
+            ALUSrc = 2; end
             
             6'b001000: begin //jr because opcode is zero for it
             ALUOp = 6'b110000;
@@ -114,6 +117,7 @@ module Controller(
             store = 2'bX;
             load = 2'bX;
             jal = 1'bX;
+            shift_mux = 1'bX;
             end
             
             endcase
@@ -136,6 +140,7 @@ module Controller(
             store = 0;
             load = 0;
             jal = 0;
+            shift_mux = 0;
             end
             
             6'b011100: begin  //mul
@@ -153,6 +158,7 @@ module Controller(
             store = 0;
             load = 0;
             jal = 0;
+            shift_mux = 0;
             end
             
             6'b000100: begin //beq
@@ -170,6 +176,7 @@ module Controller(
             store = 0;
             load = 0;
             jal = 0;
+            shift_mux = 0;
             end
             
             6'b001100: begin    //andi
@@ -187,6 +194,7 @@ module Controller(
             store = 0;
             load = 0;
             jal = 0;
+            shift_mux = 0;
             end
             
             6'b001101: begin    //ori
@@ -204,6 +212,7 @@ module Controller(
             store = 0;
             load = 0;
             jal = 0;
+            shift_mux = 0;
             end
             
             6'b001110: begin    //xori
@@ -220,6 +229,7 @@ module Controller(
             store = 0;
             load = 0;
             jal = 0;
+            shift_mux = 0;
             end
             
             6'b001010: begin    //slti
@@ -237,6 +247,7 @@ module Controller(
             store = 0;
             load = 0;
             jal = 0;
+            shift_mux = 0;
             end
             
             6'b000001: begin    //bgez or bltz
@@ -253,6 +264,7 @@ module Controller(
             store = 0;
             load = 0;
             jal = 0;
+            shift_mux = 0;
             
             if(Instruction[20:16] == 0) begin
             ALUOp = 6'b001011;  end //bltz
@@ -275,6 +287,7 @@ module Controller(
             store = 0;
             load = 0;
             jal = 0;
+            shift_mux = 0;
             end
             
             6'b000111: begin //bgtz
@@ -292,6 +305,7 @@ module Controller(
             store = 0;
             load = 0;
             jal = 0;
+            shift_mux = 0;
             end
             
             6'b000110: begin //blez
@@ -309,6 +323,7 @@ module Controller(
             store = 0;
             load = 0;
             jal = 0;
+            shift_mux = 0;
             end
             
             //jumps
@@ -327,24 +342,26 @@ module Controller(
             store = 0;
             load = 0;
             jal = 0;
+            shift_mux = 0;
             end 
             
             
             6'b000011: begin //jal
             ALUOp = 6'b110000;
             Branch = 1;
-            RegWrite = 0;
+            RegWrite = 1;
             jump_target = 1;
             ALUSrc = 1;
             RegDst = 1;
             MemWrite = 0;
             MemRead = 0;
-            MemToReg = 0; 
+            MemToReg = 1; 
             jr = 0; 
             ra = 1;
             store = 0;
             load = 0;
             jal = 1;
+            shift_mux = 0;
             end 
             
             //memory instructions
@@ -364,6 +381,7 @@ module Controller(
             store = 0;
             load = 0;
             jal = 0;
+            shift_mux = 0;
             end 
             
             6'b100001: begin //lh
@@ -381,6 +399,7 @@ module Controller(
             store = 0;
             load = 1;
             jal = 0;
+            shift_mux = 0;
             end 
             
             6'b100000: begin //lb
@@ -398,6 +417,7 @@ module Controller(
             store = 0;
             load = 2;
             jal = 0;
+            shift_mux = 0;
             end 
             
             //store
@@ -416,6 +436,7 @@ module Controller(
             store = 0;
             load = 0;
             jal = 0;
+            shift_mux = 0;
             end 
             
             6'b101001: begin //sh
@@ -433,6 +454,7 @@ module Controller(
             store = 1;
             load = 0;
             jal = 0;
+            shift_mux = 0;
             end 
             
             6'b101000: begin //sb
@@ -450,6 +472,7 @@ module Controller(
             store = 2;
             load = 0;
             jal = 0;
+            shift_mux = 0;
             end 
             
             default: begin
@@ -467,6 +490,7 @@ module Controller(
             store = 2'bX;
             load = 2'bX;
             jal = 1'bX;
+            shift_mux = 1'bX;
             end 
         
            

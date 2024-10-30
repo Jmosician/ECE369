@@ -39,9 +39,9 @@ module ALU32Bit(ALUControl, A, B, ALUResult, Zero);
     always @(*) begin //do everything except data & jump
         case(ALUControl)
         6'b000000: begin //sll
-            ALUResult <= A << B[10:6]; end
+            ALUResult <= A << B; end
         6'b000010: begin //srl
-            ALUResult <= A >> B[10:6]; end
+            ALUResult <= A >> B; end
         6'b100000: begin //add & addi
             ALUResult <= A + B; end
         6'b100010: begin //sub, beq

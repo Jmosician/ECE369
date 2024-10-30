@@ -12,7 +12,7 @@ module TopLevel_tb();
     // IF Stage outputs
     wire [31:0] PCValue;
     wire [31:0] WriteData;
-    
+   ;
     /*
     wire [31:0] PCResult;
     wire [31:0] Instruction;
@@ -89,6 +89,7 @@ module TopLevel_tb();
         .Rst(Rst),
         .PCValue(PCValue),
         .WriteData(WriteData)
+       
         
         /*
         // IF Stage
