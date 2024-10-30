@@ -2,85 +2,107 @@
 module TopLevel(
     input Clk, Rst,
     output wire [31:0] PCValue,
-    output wire [31:0] WriteData,
+    output wire [31:0] WriteData
     
-    // Internal wires
-    wire Branch_output,
-    wire [31:0] Instruction,
-    wire [31:0] Jr_Or_Not,
-    wire [31:0] PCResult,
-    wire [31:0] PCAddress,
-    wire [31:0] ALUResult,
+   
+    );
     
+    wire Branch_output;
+    wire [31:0] Instruction;
+    wire [31:0] Jr_Or_Not;
+    wire [31:0] PCResult;
+    wire [31:0] PCAddress;
+    wire [31:0] ALUResult;
+
     // Original internal wires
-    wire shift_mux,
-    wire [31:0] InstructionID,
-    wire [31:0] PCResultID,
-    wire [31:0] ReadData1,
-    wire [31:0] ReadData2,
-    wire [4:0] WB_reg,
-    wire [31:0] SignExtend,
-    wire [5:0] ALUOp,
-    wire Branch, RegWrite, Jump_Target, RegDst, MemWrite, 
-    wire MemRead, MemToReg, Jr, Ra, Jal,
-    wire [1:0] Store, Load, ALUSrc,
+    wire shift_mux;
+    wire [31:0] InstructionID;
+    wire [31:0] PCResultID;
+    wire [31:0] ReadData1;
+    wire [31:0] ReadData2;
+    wire [4:0] WB_reg;
+    wire [31:0] SignExtend;
+    wire [5:0] ALUOp;
+    wire Branch;
+    wire RegWrite;
+    wire Jump_Target;
+    wire RegDst;
+    wire MemWrite;
+    wire MemRead;
+    wire MemToReg;
+    wire Jr;
+    wire Ra;
+    wire Jal;
+    wire [1:0] Store;
+    wire [1:0] Load;
+    wire [1:0] ALUSrc;
     
     // ID/EX Stage wires
-    wire [4:0] Instruction_20_16_EX,
-    wire [4:0] Instruction_15_11_EX,
-    wire [25:0] Instruction_25_0_EX,
-    wire [31:0] PCResult_EX,
-    wire [31:0] ReadData1_EX,
-    wire [31:0] ReadData2_EX,
-    wire [31:0] SignExtend_EX,
-    wire [5:0] ALUOp_EX,
-    wire Branch_EX, RegWrite_EX, Jump_Target_EX, RegDst_EX,
-    wire MemWrite_EX, MemRead_EX, MemToReg_EX, Jr_EX, Ra_EX, Jal_EX,
-    wire [1:0] Store_EX, Load_EX, ALUSrc_EX,
+    wire [4:0] Instruction_20_16_EX;
+    wire [4:0] Instruction_15_11_EX;
+    wire [25:0] Instruction_25_0_EX;
+    wire [31:0] PCResult_EX;
+    wire [31:0] ReadData1_EX;
+    wire [31:0] ReadData2_EX;
+    wire [31:0] SignExtend_EX;
+    wire [5:0] ALUOp_EX;
+    wire Branch_EX;
+    wire RegWrite_EX;
+    wire Jump_Target_EX;
+    wire RegDst_EX;
+    wire MemWrite_EX;
+    wire MemRead_EX;
+    wire MemToReg_EX;
+    wire Jr_EX;
+    wire Ra_EX;
+    wire Jal_EX;
+    wire [1:0] Store_EX;
+    wire [1:0] Load_EX;
+    wire [1:0] ALUSrc_EX;
     
     // EX Stage wires
-    wire shift_mux_EX,
-    wire [31:0] shift_mux_result,
-    wire [4:0] RegDestMuxResult,
-    wire [31:0] jump_targetMuxResult,
-    wire [31:0] shiftResult,
-    wire [31:0] ALUSrcMuxResult,
-    wire ALUZero,
-    wire [31:0] AddResult,
-    wire [31:0] jump_targetMuxResult2,
+    wire shift_mux_EX;
+    wire [31:0] shift_mux_result;
+    wire [4:0] RegDestMuxResult;
+    wire [31:0] jump_targetMuxResult;
+    wire [31:0] shiftResult;
+    wire [31:0] ALUSrcMuxResult;
+    wire ALUZero;
+    wire [31:0] AddResult;
+    wire [31:0] jump_targetMuxResult2;
     
     // MEM Stage wires
-    wire [31:0] PCResult_MEM,
-    wire Branch_MEM,
-    wire MemWrite_MEM,
-    wire MemRead_MEM,
-    wire RegWrite_MEM,
-    wire MemToReg_MEM,
-    wire [31:0] AddResult_MEM,
-    wire ALUZero_MEM,
-    wire [31:0] ALUResult_MEM,
-    wire [4:0] RegDestMuxResult_MEM,
-    wire [31:0] ReadData2_MEM,
-    wire [31:0] ReadData1_MEM,
-    wire Ra_MEM,
-    wire [1:0] Load_MEM,
-    wire [1:0] Store_MEM,
-    wire Jal_MEM,
-    wire Jr_MEM,
-    wire [31:0] loadMuxResult,
-    wire [31:0] storeMuxResult,
-    wire [31:0] jalMuxResult,
-    wire [31:0] MemData_MEM,
+    wire [31:0] PCResult_MEM;
+    wire Branch_MEM;
+    wire MemWrite_MEM;
+    wire MemRead_MEM;
+    wire RegWrite_MEM;
+    wire MemToReg_MEM;
+    wire [31:0] AddResult_MEM;
+    wire ALUZero_MEM;
+    wire [31:0] ALUResult_MEM;
+    wire [4:0] RegDestMuxResult_MEM;
+    wire [31:0] ReadData2_MEM;
+    wire [31:0] ReadData1_MEM;
+    wire Ra_MEM;
+    wire [1:0] Load_MEM;
+    wire [1:0] Store_MEM;
+    wire Jal_MEM;
+    wire Jr_MEM;
+    wire [31:0] loadMuxResult;
+    wire [31:0] storeMuxResult;
+    wire [31:0] jalMuxResult;
+    wire [31:0] MemData_MEM;
     
     // WB Stage wires
-    wire Ra_WB,
-    wire RegWrite_WB,
-    wire MemToReg_WB,
-    wire [31:0] jalMuxResult_WB,
-    wire [31:0] MemData_WB,
-    wire [4:0] RegDestMuxResult_WB
+    wire Ra_WB;
+    wire RegWrite_WB;
+    wire MemToReg_WB;
+    wire [31:0] jalMuxResult_WB;
+    wire [31:0] MemData_WB;
+    wire [4:0] RegDestMuxResult_WB;
+
     
-    );
 
     
 
@@ -367,7 +389,7 @@ module TopLevel(
     Mux5Bit2To1 writeMux(
         .out(WB_reg),
         .inA(RegDestMuxResult_WB),
-        .inB(31),
+        .inB(5'b11111),
         .sel(Ra_WB)
     );
 
