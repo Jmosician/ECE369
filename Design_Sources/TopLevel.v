@@ -3,12 +3,11 @@ module TopLevel(
     input Clk, Rst,
     output wire [31:0] PCValue,
     output wire [31:0] WriteData
-    
    
     );
     
-    wire Branch_output;
     wire [31:0] Instruction;
+    wire Branch_output;
     wire [31:0] Jr_Or_Not;
     wire [31:0] PCResult;
     wire [31:0] PCAddress;
@@ -89,10 +88,10 @@ module TopLevel(
     wire [1:0] Store_MEM;
     wire Jal_MEM;
     wire Jr_MEM;
-    wire [31:0] loadMuxResult;
     wire [31:0] storeMuxResult;
     wire [31:0] jalMuxResult;
     wire [31:0] MemData_MEM;
+    wire [31:0] memReadData;
     
     // WB Stage wires
     wire Ra_WB;
@@ -321,37 +320,37 @@ module TopLevel(
         .zero(ALUZero_MEM),
         .out(Branch_output)
     );
-   
-    Mux32Bit3To1 loadMux(
-        .out(loadMuxResult),
-        .inA(ALUResult_MEM),
-        .inB({16'b0, ALUResult_MEM[15:0]}),
-        .inC({24'b0, ALUResult_MEM[7:0]}),
-        .sel(Load_MEM)
-    );
     
-    Mux32Bit2To1 jrMux(
+     Mux32Bit2To1 jrMux(
         .out(Jr_Or_Not),
         .inA(AddResult_MEM),
         .inB(ReadData1_MEM),
         .sel(Jr_MEM)
     );
-    
+   
     Mux32Bit3To1 storeMux(
         .out(storeMuxResult),
         .inA(ReadData2_MEM),
-        .inB({16'b0, ReadData2_MEM[15:0]}),
-        .inC({24'b0, ReadData2_MEM[7:0]}),
+        .inB({{16{ReadData2_MEM[15]}}, ReadData2_MEM[15:0]}),  // Sign-extended halfword
+        .inC({{24{ReadData2_MEM[7]}}, ReadData2_MEM[7:0]}),    // Sign-extended byte
         .sel(Store_MEM)
     );
     
     DataMemory datamemory(
-        .Address(loadMuxResult),
+        .Address(ALUResult_MEM),
         .WriteData(storeMuxResult),
         .Clk(Clk),
         .MemWrite(MemWrite_MEM),
         .MemRead(MemRead_MEM),
-        .ReadData(MemData_MEM)
+        .ReadData(memReadData)
+    );
+    
+    Mux32Bit3To1 loadMux(
+    .out(MemData_MEM),
+    .inA(memReadData),                // lw
+    .inB({{16{memReadData[15]}}, memReadData[15:0]}),  // lh
+    .inC({{24{memReadData[7]}}, memReadData[7:0]}),    // lb
+    .sel(Load_MEM)
     );
 
     Mux32Bit2To1 jalMux(

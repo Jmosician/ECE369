@@ -59,11 +59,16 @@ module RegisterFile(ReadRegister1, ReadRegister2, WriteRegister, WriteData, RegW
     
     reg [31:0] Registers [31:0]; //test 32, 32bit regs
     
+    
     integer i;
+    
+    /*
     initial begin
         for (i = 0; i < 32; i = i + 1)
             Registers[i] = i;  // Initialize all registers to 0
     end
+    
+    */
     
     always @(posedge Clk) begin
     if(RegWrite == 1) begin
