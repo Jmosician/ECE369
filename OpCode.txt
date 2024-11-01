@@ -1,21 +1,23 @@
 Func / ALUOp
-100000 - Add, Addi
-100010 - Sub, beq
-111000 - mul //same as srl
-100100 - and, andi
-100101 - Or, ori
-100111 - Nor
-100110 - Xor
-101010 - slt, slti
+000000 - sll 
+000010 - srl //don't follow ALU 
 001000 - bgez
+001000 - jr
 001001 - bne
 001010 - blez
 001011 - bltz
 001111 - bgtz
-000010 - srl //dont follow ALU 
-000000 - sll 
-110000 - j
-001000 - jr
+100000 - Add, Addi
+100010 - Sub, beq
+100100 - and
+100101 - Or, ori
+100110 - Xor
+//101110 - Xori   //might not need extra
+//111110 - Andi
+100111 - Nor
+101010 - slt, slti
+111000 - mul //same as srl
+
 
 
 OpCode
